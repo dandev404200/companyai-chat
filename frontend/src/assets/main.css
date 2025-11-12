@@ -1,0 +1,72 @@
+@import "tailwindcss" theme(static);
+@import "@nuxt/ui";
+
+@theme static {
+  --font-sans: 'Public Sans', sans-serif;
+
+  /* Black */
+  --color-black-DEFAULT: #000000;
+  --color-black-100: #000000;
+  --color-black-200: #000000;
+  --color-black-300: #000000;
+  --color-black-400: #000000;
+  --color-black-500: #000000;
+  --color-black-600: #333333;
+  --color-black-700: #666666;
+  --color-black-800: #999999;
+  --color-black-900: #cccccc;
+
+  /* Cambridge Blue */
+  --color-cambridge-blue-DEFAULT: #839788;
+  --color-cambridge-blue-100: #1a1f1b;
+  --color-cambridge-blue-200: #333d36;
+  --color-cambridge-blue-300: #4d5c50;
+  --color-cambridge-blue-400: #667a6b;
+  --color-cambridge-blue-500: #839788;
+  --color-cambridge-blue-600: #9bab9f;
+  --color-cambridge-blue-700: #b4c0b7;
+  --color-cambridge-blue-800: #cdd5cf;
+  --color-cambridge-blue-900: #e6eae7;
+
+  /* Champagne */
+  --color-champagne-DEFAULT: #eee0cb;
+  --color-champagne-100: #423015;
+  --color-champagne-200: #84612b;
+  --color-champagne-300: #c39045;
+  --color-champagne-400: #d8b887;
+  --color-champagne-500: #eee0cb;
+  --color-champagne-600: #f1e5d4;
+  --color-champagne-700: #f5ecdf;
+  --color-champagne-800: #f8f2e9;
+  --color-champagne-900: #fcf9f4;
+
+  /* Khaki */
+  --color-khaki-DEFAULT: #baa898;
+  --color-khaki-100: #28211b;
+  --color-khaki-200: #514236;
+  --color-khaki-300: #796451;
+  --color-khaki-400: #9f856f;
+  --color-khaki-500: #baa898;
+  --color-khaki-600: #c8b9ac;
+  --color-khaki-700: #d5cac1;
+  --color-khaki-800: #e3dcd5;
+  --color-khaki-900: #f1edea;
+
+  /* Columbia Blue */
+  --color-columbia-blue-DEFAULT: #bfd7ea;
+  --color-columbia-blue-100: #152c40;
+  --color-columbia-blue-200: #295980;
+  --color-columbia-blue-300: #3e85c0;
+  --color-columbia-blue-400: #7eaed5;
+  --color-columbia-blue-500: #bfd7ea;
+  --color-columbia-blue-600: #cbdeee;
+  --color-columbia-blue-700: #d8e6f2;
+  --color-columbia-blue-800: #e5eff7;
+  --color-columbia-blue-900: #f2f7fb;
+}
+
+:root {
+  --ui-container: var(--container-3xl);
+}
+
+

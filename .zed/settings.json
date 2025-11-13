@@ -1,0 +1,63 @@
+{
+  "languages": {
+    "Python": {
+      "language_servers": ["basedpyright"],
+      "format_on_save": "on",
+      "formatter": "language_server"
+    }
+  },
+  "lsp": {
+    "basedpyright": {
+      "settings": {
+        "python": {
+          "pythonPath": "./backend/.venv/bin/python",
+          "venvPath": "./backend",
+          "venv": ".venv"
+        },
+        "basedpyright": {
+          "analysis": {
+            "typeCheckingMode": "standard",
+            "diagnosticMode": "workspace",
+            "useLibraryCodeForTypes": true,
+            "autoSearchPaths": true,
+            "autoImportCompletions": true,
+            "diagnosticSeverityOverrides": {
+              "reportArgumentType": "none",
+              "reportCallIssue": "none",
+              "reportGeneralTypeIssues": "warning",
+              "reportOptionalMemberAccess": "none",
+              "reportOptionalSubscript": "none",
+              "reportOptionalCall": "none",
+              "reportOptionalIterable": "none",
+              "reportOptionalContextManager": "none",
+              "reportOptionalOperand": "none",
+              "reportUnknownArgumentType": "none",
+              "reportUnknownLambdaType": "none",
+              "reportUnknownMemberType": "none",
+              "reportUnknownParameterType": "none",
+              "reportUnknownVariableType": "none",
+              "reportUnnecessaryIsInstance": "warning",
+              "reportUnnecessaryCast": "warning",
+              "reportUnnecessaryComparison": "warning",
+              "reportUnusedImport": "warning",
+              "reportUnusedVariable": "warning",
+              "reportDuplicateImport": "warning",
+              "reportMissingTypeStubs": "none",
+              "reportImportCycles": "none",
+              "reportPrivateUsage": "none",
+              "reportConstantRedefinition": "warning"
+            },
+            "extraPaths": ["./backend", "./backend/app"],
+            "ignore": ["**/node_modules", "**/__pycache__", ".git", "**/.*"],
+            "includeFileSpecs": ["backend/**/*.py"],
+            "excludeFileSpecs": [
+              "**/__pycache__",
+              "**/.venv",
+              "**/node_modules"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

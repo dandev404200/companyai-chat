@@ -1,0 +1,21 @@
+{
+  "name": "langchain_core",
+  "functions": {
+    "surface_langchain_beta_warnings": {
+      "name": "surface_langchain_beta_warnings",
+      "module": "langchain_core",
+      "doc": "Unmute LangChain beta warnings.",
+      "parameters": {},
+      "return_type": "<class 'NoneType'>"
+    },
+    "surface_langchain_deprecation_warnings": {
+      "name": "surface_langchain_deprecation_warnings",
+      "module": "langchain_core",
+      "doc": "Unmute LangChain deprecation warnings.",
+      "parameters": {},
+      "return_type": "<class 'NoneType'>"
+    }
+  },
+  "classes": {},
+  "imports": []
+}

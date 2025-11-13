@@ -1,0 +1,1002 @@
+{
+  "name": "langchain_anthropic",
+  "functions": {
+    "convert_to_anthropic_tool": {
+      "name": "convert_to_anthropic_tool",
+      "module": "langchain_anthropic",
+      "doc": "Convert a tool-like object to an Anthropic tool definition.",
+      "parameters": {
+        "tool": {
+          "name": "tool",
+          "kind": "POSITIONAL_OR_KEYWORD",
+          "default": null,
+          "annotation": "dict[str, Any] | type | Callable | BaseTool",
+          "type_hint": "dict[str, typing.Any] | type | collections.abc.Callable | langchain_core.tools.base.BaseTool"
+        }
+      },
+      "return_type": "<class 'langchain_anthropic.chat_models.AnthropicTool'>"
+    }
+  },
+  "classes": {
+    "AnthropicLLM": {
+      "name": "AnthropicLLM",
+      "module": "langchain_anthropic",
+      "doc": "Anthropic text completion large language model (legacy LLM).\n\nTo use, you should have the environment variable `ANTHROPIC_API_KEY`\nset with your API key, or pass it as a named parameter to the constructor.\n\nExample:\n    ```python\n    from langchain_anthropic import AnthropicLLM\n\n    model = AnthropicLLM(model=\"claude-sonnet-4-5\")\n    ```",
+      "bases": [
+        "LLM",
+        "_AnthropicCommon"
+      ],
+      "methods": {
+        "build_extra": {
+          "name": "build_extra",
+          "module": "langchain_anthropic",
+          "doc": "",
+          "parameters": {
+            "values": {
+              "name": "values",
+              "kind": "POSITIONAL_OR_KEYWORD",
+              "default": null,
+              "annotation": "dict",
+              "type_hint": "<class 'dict'>"
+            }
+          },
+          "return_type": "typing.Any"
+        },
+        "construct": {
+          "name": "construct",
+          "module": "langchain_anthropic",
+          "doc": "",
+          "parameters": {
+            "_fields_set": {
+              "name": "_fields_set",
+              "kind": "POSITIONAL_OR_KEYWORD",
+              "default": "None",
+              "annotation": "set[str] | None",
+              "type_hint": "set[str] | None"
+            },
+            "values": {
+              "name": "values",
+              "kind": "VAR_KEYWORD",
+              "default": null,
+              "annotation": "Any",
+              "type_hint": "typing.Any"
+            }
+          },
+          "return_type": "typing.Self"
+        },
+        "from_orm": {
+          "name": "from_orm",
+          "module": "langchain_anthropic",
+          "doc": "",
+          "parameters": {
+            "obj": {
+              "name": "obj",
+              "kind": "POSITIONAL_OR_KEYWORD",
+              "default": null,
+              "annotation": "Any",
+              "type_hint": "typing.Any"
+            }
+          },
+          "return_type": "typing.Self"
+        },
+        "get_lc_namespace": {
+          "name": "get_lc_namespace",
+          "module": "langchain_anthropic",
+          "doc": "Get the namespace of the LangChain object.\n\nFor example, if the class is `langchain.llms.openai.OpenAI`, then the\nnamespace is `[\"langchain\", \"llms\", \"openai\"]`\n\nReturns:\n    The namespace.",
+          "parameters": {},
+          "return_type": "list[str]"
+        },
+        "is_lc_serializable": {
+          "name": "is_lc_serializable",
+          "module": "langchain_anthropic",
+          "doc": "Whether this class can be serialized by langchain.",
+          "parameters": {},
+          "return_type": "<class 'bool'>"
+        },
+        "lc_id": {
+          "name": "lc_id",
+          "module": "langchain_anthropic",
+          "doc": "Return a unique identifier for this class for serialization purposes.\n\nThe unique identifier is a list of strings that describes the path\nto the object.\n\nFor example, for the class `langchain.llms.openai.OpenAI`, the id is\n`[\"langchain\", \"llms\", \"openai\", \"OpenAI\"]`.",
+          "parameters": {},
+          "return_type": "list[str]"
+        },
+        "model_construct": {
+          "name": "model_construct",
+          "module": "langchain_anthropic",
+          "doc": "Creates a new instance of the `Model` class with validated data.\n\nCreates a new model setting `__dict__` and `__pydantic_fields_set__` from trusted or pre-validated data.\nDefault values are respected, but no other validation is performed.\n\n!!! note\n    `model_construct()` generally respects the `model_config.extra` setting on the provided model.\n    That is, if `model_config.extra == 'allow'`, then all extra passed values are added to the model instance's `__dict__`\n    and `__pydantic_extra__` fields. If `model_config.extra == 'ignore'` (the default), then all extra passed values are ignored.\n    Because no validation is performed with a call to `model_construct()`, having `model_config.extra == 'forbid'` does not result in\n    an error if extra values are passed, but they will be ignored.\n\nArgs:\n    _fields_set: A set of field names that were originally explicitly set during instantiation. If provided,\n        this is directly used for the [`model_fields_set`][pydantic.BaseModel.model_fields_set] attribute.\n        Otherwise, the field names from the `values` argument will be used.\n    values: Trusted or pre-validated data dictionary.\n\nReturns:\n    A new instance of the `Model` class with validated data.",
+          "parameters": {
+            "_fields_set": {
+              "name": "_fields_set",
+              "kind": "POSITIONAL_OR_KEYWORD",
+              "default": "None",
+              "annotation": "set[str] | None",
+              "type_hint": "set[str] | None"
+            },
+            "values": {
+              "name": "values",
+              "kind": "VAR_KEYWORD",
+              "default": null,
+              "annotation": "Any",
+              "type_hint": "typing.Any"
+            }
+          },
+          "return_type": "typing.Self"
+        },
+        "model_json_schema": {
+          "name": "model_json_schema",
+          "module": "langchain_anthropic",
+          "doc": "Generates a JSON schema for a model class.\n\nArgs:\n    by_alias: Whether to use attribute aliases or not.\n    ref_template: The reference template.\n    union_format: The format to use when combining schemas from unions together. Can be one of:\n\n        - `'any_of'`: Use the [`anyOf`](https://json-schema.org/understanding-json-schema/reference/combining#anyOf)\n        keyword to combine schemas (the default).\n        - `'primitive_type_array'`: Use the [`type`](https://json-schema.org/understanding-json-schema/reference/type)\n        keyword as an array of strings, containing each type of the combination. If any of the schemas is not a primitive\n        type (`string`, `boolean`, `null`, `integer` or `number`) or contains constraints/metadata, falls back to\n        `any_of`.\n    schema_generator: To override the logic used to generate the JSON schema, as a subclass of\n        `GenerateJsonSchema` with your desired modifications\n    mode: The mode in which to generate the schema.\n\nReturns:\n    The JSON schema for the given model class.",
+          "parameters": {
+            "by_alias": {
+              "name": "by_alias",
+              "kind": "POSITIONAL_OR_KEYWORD",
+              "default": "True",
+              "annotation": "bool",
+              "type_hint": "<class 'bool'>"
+            },
+            "ref_template": {
+              "name": "ref_template",
+              "kind": "POSITIONAL_OR_KEYWORD",
+              "default": "#/$defs/{model}",
+              "annotation": "str",
+              "type_hint": "<class 'str'>"
+            },
+            "schema_generator": {
+              "name": "schema_generator",
+              "kind": "POSITIONAL_OR_KEYWORD",
+              "default": "<class 'pydantic.json_schema.GenerateJsonSchema'>",
+              "annotation": "type[GenerateJsonSchema]",
+              "type_hint": "type[pydantic.json_schema.GenerateJsonSchema]"
+            },
+            "mode": {
+              "name": "mode",
+              "kind": "POSITIONAL_OR_KEYWORD",
+              "default": "validation",
+              "annotation": "JsonSchemaMode",
+              "type_hint": "typing.Literal['validation', 'serialization']"
+            },
+            "union_format": {
+              "name": "union_format",
+              "kind": "KEYWORD_ONLY",
+              "default": "any_of",
+              "annotation": "Literal['any_of', 'primitive_type_array']",
+              "type_hint": "typing.Literal['any_of', 'primitive_type_array']"
+            }
+          },
+          "return_type": "dict[str, typing.Any]"
+        },
+        "model_parametrized_name": {
+          "name": "model_parametrized_name",
+          "module": "langchain_anthropic",
+          "doc": "Compute the class name for parametrizations of generic classes.\n\nThis method can be overridden to achieve a custom naming scheme for generic BaseModels.\n\nArgs:\n    params: Tuple of types of the class. Given a generic class\n        `Model` with 2 type variables and a concrete model `Model[str, int]`,\n        the value `(str, int)` would be passed to `params`.\n\nReturns:\n    String representing the new class where `params` are passed to `cls` as type variables.\n\nRaises:\n    TypeError: Raised when trying to generate concrete names for non-generic models.",
+          "parameters": {
+            "params": {
+              "name": "params",
+              "kind": "POSITIONAL_OR_KEYWORD",
+              "default": null,
+              "annotation": "tuple[type[Any], ...]",
+              "type_hint": "tuple[type[typing.Any], ...]"
+            }
+          },
+          "return_type": "<class 'str'>"
+        },
+        "model_rebuild": {
+          "name": "model_rebuild",
+          "module": "langchain_anthropic",
+          "error": "name 'MappingNamespace' is not defined"
+        },
+        "model_validate": {
+          "name": "model_validate",
+          "module": "langchain_anthropic",
+          "doc": "Validate a pydantic model instance.\n\nArgs:\n    obj: The object to validate.\n    strict: Whether to enforce types strictly.\n    extra: Whether to ignore, allow, or forbid extra data during model validation.\n        See the [`extra` configuration value][pydantic.ConfigDict.extra] for details.\n    from_attributes: Whether to extract data from object attributes.\n    context: Additional context to pass to the validator.\n    by_alias: Whether to use the field's alias when validating against the provided input data.\n    by_name: Whether to use the field's name when validating against the provided input data.\n\nRaises:\n    ValidationError: If the object could not be validated.\n\nReturns:\n    The validated model instance.",
+          "parameters": {
+            "obj": {
+              "name": "obj",
+              "kind": "POSITIONAL_OR_KEYWORD",
+              "default": null,
+              "annotation": "Any",
+              "type_hint": "typing.Any"
+            },
+            "strict": {
+              "name": "strict",
+              "kind": "KEYWORD_ONLY",
+              "default": "None",
+              "annotation": "bool | None",
+              "type_hint": "bool | None"
+            },
+            "extra": {
+              "name": "extra",
+              "kind": "KEYWORD_ONLY",
+              "default": "None",
+              "annotation": "ExtraValues | None",
+              "type_hint": "typing.Optional[typing.Literal['allow', 'ignore', 'forbid']]"
+            },
+            "from_attributes": {
+              "name": "from_attributes",
+              "kind": "KEYWORD_ONLY",
+              "default": "None",
+              "annotation": "bool | None",
+              "type_hint": "bool | None"
+            },
+            "context": {
+              "name": "context",
+              "kind": "KEYWORD_ONLY",
+              "default": "None",
+              "annotation": "Any | None",
+              "type_hint": "typing.Any | None"
+            },
+            "by_alias": {
+              "name": "by_alias",
+              "kind": "KEYWORD_ONLY",
+              "default": "None",
+              "annotation": "bool | None",
+              "type_hint": "bool | None"
+            },
+            "by_name": {
+              "name": "by_name",
+              "kind": "KEYWORD_ONLY",
+              "default": "None",
+              "annotation": "bool | None",
+              "type_hint": "bool | None"
+            }
+          },
+          "return_type": "typing.Self"
+        },
+        "model_validate_json": {
+          "name": "model_validate_json",
+          "module": "langchain_anthropic",
+          "doc": "!!! abstract \"Usage Documentation\"\n    [JSON Parsing](../concepts/json.md#json-parsing)\n\nValidate the given JSON data against the Pydantic model.\n\nArgs:\n    json_data: The JSON data to validate.\n    strict: Whether to enforce types strictly.\n    extra: Whether to ignore, allow, or forbid extra data during model validation.\n        See the [`extra` configuration value][pydantic.ConfigDict.extra] for details.\n    context: Extra variables to pass to the validator.\n    by_alias: Whether to use the field's alias when validating against the provided input data.\n    by_name: Whether to use the field's name when validating against the provided input data.\n\nReturns:\n    The validated Pydantic model.\n\nRaises:\n    ValidationError: If `json_data` is not a JSON string or the object could not be validated.",
+          "parameters": {
+            "json_data": {
+              "name": "json_data",
+              "kind": "POSITIONAL_OR_KEYWORD",
+              "default": null,
+              "annotation": "str | bytes | bytearray",
+              "type_hint": "str | bytes | bytearray"
+            },
+            "strict": {
+              "name": "strict",
+              "kind": "KEYWORD_ONLY",
+              "default": "None",
+              "annotation": "bool | None",
+              "type_hint": "bool | None"
+            },
+            "extra": {
+              "name": "extra",
+              "kind": "KEYWORD_ONLY",
+              "default": "None",
+              "annotation": "ExtraValues | None",
+              "type_hint": "typing.Optional[typing.Literal['allow', 'ignore', 'forbid']]"
+            },
+            "context": {
+              "name": "context",
+              "kind": "KEYWORD_ONLY",
+              "default": "None",
+              "annotation": "Any | None",
+              "type_hint": "typing.Any | None"
+            },
+            "by_alias": {
+              "name": "by_alias",
+              "kind": "KEYWORD_ONLY",
+              "default": "None",
+              "annotation": "bool | None",
+              "type_hint": "bool | None"
+            },
+            "by_name": {
+              "name": "by_name",
+              "kind": "KEYWORD_ONLY",
+              "default": "None",
+              "annotation": "bool | None",
+              "type_hint": "bool | None"
+            }
+          },
+          "return_type": "typing.Self"
+        },
+        "model_validate_strings": {
+          "name": "model_validate_strings",
+          "module": "langchain_anthropic",
+          "doc": "Validate the given object with string data against the Pydantic model.\n\nArgs:\n    obj: The object containing string data to validate.\n    strict: Whether to enforce types strictly.\n    extra: Whether to ignore, allow, or forbid extra data during model validation.\n        See the [`extra` configuration value][pydantic.ConfigDict.extra] for details.\n    context: Extra variables to pass to the validator.\n    by_alias: Whether to use the field's alias when validating against the provided input data.\n    by_name: Whether to use the field's name when validating against the provided input data.\n\nReturns:\n    The validated Pydantic model.",
+          "parameters": {
+            "obj": {
+              "name": "obj",
+              "kind": "POSITIONAL_OR_KEYWORD",
+              "default": null,
+              "annotation": "Any",
+              "type_hint": "typing.Any"
+            },
+            "strict": {
+              "name": "strict",
+              "kind": "KEYWORD_ONLY",
+              "default": "None",
+              "annotation": "bool | None",
+              "type_hint": "bool | None"
+            },
+            "extra": {
+              "name": "extra",
+              "kind": "KEYWORD_ONLY",
+              "default": "None",
+              "annotation": "ExtraValues | None",
+              "type_hint": "typing.Optional[typing.Literal['allow', 'ignore', 'forbid']]"
+            },
+            "context": {
+              "name": "context",
+              "kind": "KEYWORD_ONLY",
+              "default": "None",
+              "annotation": "Any | None",
+              "type_hint": "typing.Any | None"
+            },
+            "by_alias": {
+              "name": "by_alias",
+              "kind": "KEYWORD_ONLY",
+              "default": "None",
+              "annotation": "bool | None",
+              "type_hint": "bool | None"
+            },
+            "by_name": {
+              "name": "by_name",
+              "kind": "KEYWORD_ONLY",
+              "default": "None",
+              "annotation": "bool | None",
+              "type_hint": "bool | None"
+            }
+          },
+          "return_type": "typing.Self"
+        },
+        "parse_file": {
+          "name": "parse_file",
+          "module": "langchain_anthropic",
+          "error": "name 'Path' is not defined"
+        },
+        "parse_obj": {
+          "name": "parse_obj",
+          "module": "langchain_anthropic",
+          "doc": "",
+          "parameters": {
+            "obj": {
+              "name": "obj",
+              "kind": "POSITIONAL_OR_KEYWORD",
+              "default": null,
+              "annotation": "Any",
+              "type_hint": "typing.Any"
+            }
+          },
+          "return_type": "typing.Self"
+        },
+        "parse_raw": {
+          "name": "parse_raw",
+          "module": "langchain_anthropic",
+          "error": "name 'DeprecatedParseProtocol' is not defined"
+        },
+        "raise_warning": {
+          "name": "raise_warning",
+          "module": "langchain_anthropic",
+          "doc": "Raise warning that this class is deprecated.",
+          "parameters": {
+            "values": {
+              "name": "values",
+              "kind": "POSITIONAL_OR_KEYWORD",
+              "default": null,
+              "annotation": "dict",
+              "type_hint": "<class 'dict'>"
+            }
+          },
+          "return_type": "typing.Any"
+        },
+        "schema": {
+          "name": "schema",
+          "module": "langchain_anthropic",
+          "doc": "",
+          "parameters": {
+            "by_alias": {
+              "name": "by_alias",
+              "kind": "POSITIONAL_OR_KEYWORD",
+              "default": "True",
+              "annotation": "bool",
+              "type_hint": "<class 'bool'>"
+            },
+            "ref_template": {
+              "name": "ref_template",
+              "kind": "POSITIONAL_OR_KEYWORD",
+              "default": "#/$defs/{model}",
+              "annotation": "str",
+              "type_hint": "<class 'str'>"
+            }
+          },
+          "return_type": "typing.Dict[str, typing.Any]"
+        },
+        "schema_json": {
+          "name": "schema_json",
+          "module": "langchain_anthropic",
+          "doc": "",
+          "parameters": {
+            "by_alias": {
+              "name": "by_alias",
+              "kind": "KEYWORD_ONLY",
+              "default": "True",
+              "annotation": "bool",
+              "type_hint": "<class 'bool'>"
+            },
+            "ref_template": {
+              "name": "ref_template",
+              "kind": "KEYWORD_ONLY",
+              "default": "#/$defs/{model}",
+              "annotation": "str",
+              "type_hint": "<class 'str'>"
+            },
+            "dumps_kwargs": {
+              "name": "dumps_kwargs",
+              "kind": "VAR_KEYWORD",
+              "default": null,
+              "annotation": "Any",
+              "type_hint": "typing.Any"
+            }
+          },
+          "return_type": "<class 'str'>"
+        },
+        "set_verbose": {
+          "name": "set_verbose",
+          "module": "langchain_anthropic",
+          "doc": "If verbose is `None`, set it.\n\nThis allows users to pass in `None` as verbose to access the global setting.\n\nArgs:\n    verbose: The verbosity setting to use.\n\nReturns:\n    The verbosity setting to use.",
+          "parameters": {
+            "verbose": {
+              "name": "verbose",
+              "kind": "POSITIONAL_OR_KEYWORD",
+              "default": null,
+              "annotation": "bool | None",
+              "type_hint": "bool | None"
+            }
+          },
+          "return_type": "<class 'bool'>"
+        },
+        "update_forward_refs": {
+          "name": "update_forward_refs",
+          "module": "langchain_anthropic",
+          "doc": "",
+          "parameters": {
+            "localns": {
+              "name": "localns",
+              "kind": "VAR_KEYWORD",
+              "default": null,
+              "annotation": "Any",
+              "type_hint": "typing.Any"
+            }
+          },
+          "return_type": "<class 'NoneType'>"
+        },
+        "validate": {
+          "name": "validate",
+          "module": "langchain_anthropic",
+          "doc": "",
+          "parameters": {
+            "value": {
+              "name": "value",
+              "kind": "POSITIONAL_OR_KEYWORD",
+              "default": null,
+              "annotation": "Any",
+              "type_hint": "typing.Any"
+            }
+          },
+          "return_type": "typing.Self"
+        }
+      },
+      "attributes": {
+        "name": "str | None",
+        "cache": "langchain_core.caches.BaseCache | bool | None",
+        "verbose": "<class 'bool'>",
+        "callbacks": "list[langchain_core.callbacks.base.BaseCallbackHandler] | langchain_core.callbacks.base.BaseCallbackManager | None",
+        "tags": "list[str] | None",
+        "metadata": "dict[str, typing.Any] | None",
+        "custom_get_token_ids": "collections.abc.Callable[[str], list[int]] | None",
+        "client": "typing.Any",
+        "async_client": "typing.Any",
+        "model": "<class 'str'>",
+        "max_tokens": "<class 'int'>",
+        "temperature": "float | None",
+        "top_k": "int | None",
+        "top_p": "float | None",
+        "streaming": "<class 'bool'>",
+        "default_request_timeout": "float | None",
+        "max_retries": "<class 'int'>",
+        "anthropic_api_url": "str | None",
+        "anthropic_api_key": "<class 'pydantic.types.SecretStr'>",
+        "HUMAN_PROMPT": "str | None",
+        "AI_PROMPT": "str | None",
+        "count_tokens": "collections.abc.Callable[[str], int] | None",
+        "model_kwargs": "dict[str, typing.Any]"
+      }
+    },
+    "ChatAnthropic": {
+      "name": "ChatAnthropic",
+      "module": "langchain_anthropic",
+      "doc": "Anthropic chat models.\n\nSee [Anthropic's docs](https://docs.claude.com/en/docs/about-claude/models/overview)\nfor a list of the latest models.\n\nSetup:\n    Install `langchain-anthropic` and set environment variable `ANTHROPIC_API_KEY`.\n\n    ```bash\n    pip install -U langchain-anthropic\n    export ANTHROPIC_API_KEY=\"your-api-key\"\n    ```\n\nKey init args \u2014 completion params:\n    model:\n        Name of Anthropic model to use. e.g. `'claude-sonnet-4-5-20250929'`.\n    temperature:\n        Sampling temperature. Ranges from `0.0` to `1.0`.\n    max_tokens:\n        Max number of tokens to generate.\n\nKey init args \u2014 client params:\n    timeout:\n        Timeout for requests.\n    anthropic_proxy:\n        Proxy to use for the Anthropic clients, will be used for every API call.\n        If not passed in will be read from env var `ANTHROPIC_PROXY`.\n    max_retries:\n        Max number of retries if a request fails.\n    api_key:\n        Anthropic API key. If not passed in will be read from env var\n        `ANTHROPIC_API_KEY`.\n    base_url:\n        Base URL for API requests. Only specify if using a proxy or service\n        emulator.\n\nSee full list of supported init args and their descriptions in the params section.\n\nInstantiate:\n    ```python\n    from langchain_anthropic import ChatAnthropic\n\n    model = ChatAnthropic(\n        model=\"claude-sonnet-4-5-20250929\",\n        temperature=0,\n        max_tokens=1024,\n        timeout=None,\n        max_retries=2,\n        # api_key=\"...\",\n        # base_url=\"...\",\n        # other params...\n    )\n    ```\n\n!!! note\n    Any param which is not explicitly supported will be passed directly to the\n    `anthropic.Anthropic.messages.create(...)` API every time to the model is\n    invoked. For example:\n\n    ```python\n    from langchain_anthropic import ChatAnthropic\n    import anthropic\n\n    ChatAnthropic(..., extra_headers={}).invoke(...)\n\n    # results in underlying API call of:\n\n    anthropic.Anthropic(..).messages.create(..., extra_headers={})\n\n    # which is also equivalent to:\n\n    ChatAnthropic(...).invoke(..., extra_headers={})\n    ```\n\nInvoke:\n    ```python\n    messages = [\n        (\n            \"system\",\n            \"You are a helpful translator. Translate the user sentence to French.\",\n        ),\n        (\"human\", \"I love programming.\"),\n    ]\n    model.invoke(messages)\n    ```\n\n    ```python\n    AIMessage(\n        content=\"J'aime la programmation.\",\n        response_metadata={\n            \"id\": \"msg_01Trik66aiQ9Z1higrD5XFx3\",\n            \"model\": \"claude-sonnet-4-5-20250929\",\n            \"stop_reason\": \"end_turn\",\n            \"stop_sequence\": None,\n            \"usage\": {\"input_tokens\": 25, \"output_tokens\": 11},\n        },\n        id=\"run-5886ac5f-3c2e-49f5-8a44-b1e92808c929-0\",\n        usage_metadata={\n            \"input_tokens\": 25,\n            \"output_tokens\": 11,\n            \"total_tokens\": 36,\n        },\n    )\n    ```\n\nStream:\n    ```python\n    for chunk in model.stream(messages):\n        print(chunk.text, end=\"\")\n    ```\n\n    ```python\n    AIMessageChunk(content=\"J\", id=\"run-272ff5f9-8485-402c-b90d-eac8babc5b25\")\n    AIMessageChunk(content=\"'\", id=\"run-272ff5f9-8485-402c-b90d-eac8babc5b25\")\n    AIMessageChunk(content=\"a\", id=\"run-272ff5f9-8485-402c-b90d-eac8babc5b25\")\n    AIMessageChunk(content=\"ime\", id=\"run-272ff5f9-8485-402c-b90d-eac8babc5b25\")\n    AIMessageChunk(content=\" la\", id=\"run-272ff5f9-8485-402c-b90d-eac8babc5b25\")\n    AIMessageChunk(content=\" programm\", id=\"run-272ff5f9-8485-402c-b90d-eac8babc5b25\")\n    AIMessageChunk(content=\"ation\", id=\"run-272ff5f9-8485-402c-b90d-eac8babc5b25\")\n    AIMessageChunk(content=\".\", id=\"run-272ff5f9-8485-402c-b90d-eac8babc5b25\")\n    ```\n\n    ```python\n    stream = model.stream(messages)\n    full = next(stream)\n    for chunk in stream:\n        full += chunk\n    full\n    ```\n\n    ```python\n    AIMessageChunk(content=\"J'aime la programmation.\", id=\"run-b34faef0-882f-4869-a19c-ed2b856e6361\")\n    ```\n\nAsync:\n    ```python\n    await model.ainvoke(messages)\n\n    # stream:\n    # async for chunk in (await model.astream(messages))\n\n    # batch:\n    # await model.abatch([messages])\n    ```\n\n    ```python\n    AIMessage(\n        content=\"J'aime la programmation.\",\n        response_metadata={\n            \"id\": \"msg_01Trik66aiQ9Z1higrD5XFx3\",\n            \"model\": \"claude-sonnet-4-5-20250929\",\n            \"stop_reason\": \"end_turn\",\n            \"stop_sequence\": None,\n            \"usage\": {\"input_tokens\": 25, \"output_tokens\": 11},\n        },\n        id=\"run-5886ac5f-3c2e-49f5-8a44-b1e92808c929-0\",\n        usage_metadata={\n            \"input_tokens\": 25,\n            \"output_tokens\": 11,\n            \"total_tokens\": 36,\n        },\n    )\n    ```\n\nTool calling:\n    ```python\n    from pydantic import BaseModel, Field\n\n\n    class GetWeather(BaseModel):\n        '''Get the current weather in a given location'''\n\n        location: str = Field(..., description=\"The city and state, e.g. San Francisco, CA\")\n\n\n    class GetPopulation(BaseModel):\n        '''Get the current population in a given location'''\n\n        location: str = Field(..., description=\"The city and state, e.g. San Francisco, CA\")\n\n\n    model_with_tools = model.bind_tools([GetWeather, GetPopulation])\n    ai_msg = model_with_tools.invoke(\"Which city is hotter today and which is bigger: LA or NY?\")\n    ai_msg.tool_calls\n    ```\n\n    ```python\n    [\n        {\n            \"name\": \"GetWeather\",\n            \"args\": {\"location\": \"Los Angeles, CA\"},\n            \"id\": \"toolu_01KzpPEAgzura7hpBqwHbWdo\",\n        },\n        {\n            \"name\": \"GetWeather\",\n            \"args\": {\"location\": \"New York, NY\"},\n            \"id\": \"toolu_01JtgbVGVJbiSwtZk3Uycezx\",\n        },\n        {\n            \"name\": \"GetPopulation\",\n            \"args\": {\"location\": \"Los Angeles, CA\"},\n            \"id\": \"toolu_01429aygngesudV9nTbCKGuw\",\n        },\n        {\n            \"name\": \"GetPopulation\",\n            \"args\": {\"location\": \"New York, NY\"},\n            \"id\": \"toolu_01JPktyd44tVMeBcPPnFSEJG\",\n        },\n    ]\n    ```\n\n    See `ChatAnthropic.bind_tools()` method for more.\n\nStructured output:\n    ```python\n    from typing import Optional\n\n    from pydantic import BaseModel, Field\n\n\n    class Joke(BaseModel):\n        '''Joke to tell user.'''\n\n        setup: str = Field(description=\"The setup of the joke\")\n        punchline: str = Field(description=\"The punchline to the joke\")\n        rating: int | None = Field(description=\"How funny the joke is, from 1 to 10\")\n\n\n    structured_model = model.with_structured_output(Joke)\n    structured_model.invoke(\"Tell me a joke about cats\")\n    ```\n\n    ```python\n    Joke(\n        setup=\"Why was the cat sitting on the computer?\",\n        punchline=\"To keep an eye on the mouse!\",\n        rating=None,\n    )\n    ```\n\n    See `ChatAnthropic.with_structured_output()` for more.\n\nImage input:\n    See [multimodal guides](https://docs.langchain.com/oss/python/langchain/models#multimodal)\n    for more detail.\n\n    ```python\n    import base64\n\n    import httpx\n    from langchain_anthropic import ChatAnthropic\n    from langchain_core.messages import HumanMessage\n\n    image_url = \"https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Gfp-wisconsin-madison-the-nature-boardwalk.jpg/2560px-Gfp-wisconsin-madison-the-nature-boardwalk.jpg\"\n    image_data = base64.b64encode(httpx.get(image_url).content).decode(\"utf-8\")\n\n    model = ChatAnthropic(model=\"claude-sonnet-4-5-20250929\")\n    message = HumanMessage(\n        content=[\n            {\n                \"type\": \"text\",\n                \"text\": \"Can you highlight the differences between these two images?\",\n            },\n            {\n                \"type\": \"image\",\n                \"base64\": image_data,\n                \"mime_type\": \"image/jpeg\",\n            },\n            {\n                \"type\": \"image\",\n                \"url\": image_url,\n            },\n        ],\n    )\n    ai_msg = model.invoke([message])\n    ai_msg.content\n    ```\n\n    ```python\n    \"After examining both images carefully, I can see that they are actually identical.\"\n    ```\n\n    ??? note \"Files API\"\n\n        You can also pass in files that are managed through Anthropic's\n        [Files API](https://docs.claude.com/en/docs/build-with-claude/files):\n\n        ```python\n        from langchain_anthropic import ChatAnthropic\n\n        model = ChatAnthropic(\n            model=\"claude-sonnet-4-5-20250929\",\n            betas=[\"files-api-2025-04-14\"],\n        )\n        input_message = {\n            \"role\": \"user\",\n            \"content\": [\n                {\n                    \"type\": \"text\",\n                    \"text\": \"Describe this document.\",\n                },\n                {\n                    \"type\": \"image\",\n                    \"id\": \"file_abc123...\",\n                },\n            ],\n        }\n        model.invoke([input_message])\n        ```\n\nPDF input:\n    See [multimodal guides](https://docs.langchain.com/oss/python/langchain/models#multimodal)\n    for more detail.\n\n    ```python\n    from base64 import b64encode\n    from langchain_anthropic import ChatAnthropic\n    from langchain_core.messages import HumanMessage\n    import requests\n\n    url = \"https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf\"\n    data = b64encode(requests.get(url).content).decode()\n\n    model = ChatAnthropic(model=\"claude-sonnet-4-5-20250929\")\n    ai_msg = model.invoke(\n        [\n            HumanMessage(\n                [\n                    \"Summarize this document.\",\n                    {\n                        \"type\": \"file\",\n                        \"mime_type\": \"application/pdf\",\n                        \"base64\": data,\n                    },\n                ]\n            )\n        ]\n    )\n    ai_msg.content\n    ```\n\n    ```python\n    \"This appears to be a simple document...\"\n    ```\n\n    ??? note \"Files API\"\n\n        You can also pass in files that are managed through Anthropic's\n        [Files API](https://docs.claude.com/en/docs/build-with-claude/files):\n\n        ```python\n        from langchain_anthropic import ChatAnthropic\n\n        model = ChatAnthropic(\n            model=\"claude-sonnet-4-5-20250929\",\n            betas=[\"files-api-2025-04-14\"],\n        )\n        input_message = {\n            \"role\": \"user\",\n            \"content\": [\n                {\n                    \"type\": \"text\",\n                    \"text\": \"Describe this document.\",\n                },\n                {\n                    \"type\": \"file\",\n                    \"id\": \"file_abc123...\",\n                },\n            ],\n        }\n        model.invoke([input_message])\n        ```\n\nExtended thinking:\n    Certain [Claude models](https://docs.claude.com/en/docs/build-with-claude/extended-thinking#supported-models)\n    support an [extended thinking](https://docs.claude.com/en/docs/build-with-claude/extended-thinking)\n    feature, which will output the step-by-step reasoning process that led to its\n    final answer.\n\n    To use it, specify the `thinking` parameter when initializing `ChatAnthropic`.\n\n    It can also be passed in as a kwarg during invocation.\n\n    You will need to specify a token budget to use this feature. See usage example:\n\n    ```python\n    from langchain_anthropic import ChatAnthropic\n\n    model = ChatAnthropic(\n        model=\"claude-sonnet-4-5-20250929\",\n        max_tokens=5000,\n        thinking={\"type\": \"enabled\", \"budget_tokens\": 2000},\n    )\n\n    response = model.invoke(\"What is the cube root of 50.653?\")\n    response.content\n    ```\n\n    ```python\n    [\n        {\n            \"signature\": \"...\",\n            \"thinking\": \"To find the cube root of 50.653...\",\n            \"type\": \"thinking\",\n        },\n        {\"text\": \"The cube root of 50.653 is ...\", \"type\": \"text\"},\n    ]\n    ```\n\n    !!! warning \"Differences in thinking across model versions\"\n        The Claude Messages API handles thinking differently across Claude Sonnet\n        3.7 and Claude 4 models. Refer to [their docs](https://docs.claude.com/en/docs/build-with-claude/extended-thinking#differences-in-thinking-across-model-versions)\n        for more info.\n\nCitations:\n    Anthropic supports a [citations](https://docs.claude.com/en/docs/build-with-claude/citations)\n    feature that lets Claude attach context to its answers based on source\n    documents supplied by the user. When [document content blocks](https://docs.claude.com/en/docs/build-with-claude/citations#document-types)\n    with `\"citations\": {\"enabled\": True}` are included in a query, Claude may\n    generate citations in its response.\n\n    ```python\n    from langchain_anthropic import ChatAnthropic\n\n    model = ChatAnthropic(model=\"claude-3-5-haiku-20241022\")\n\n    messages = [\n        {\n            \"role\": \"user\",\n            \"content\": [\n                {\n                    \"type\": \"document\",\n                    \"source\": {\n                        \"type\": \"text\",\n                        \"media_type\": \"text/plain\",\n                        \"data\": \"The grass is green. The sky is blue.\",\n                    },\n                    \"title\": \"My Document\",\n                    \"context\": \"This is a trustworthy document.\",\n                    \"citations\": {\"enabled\": True},\n                },\n                {\"type\": \"text\", \"text\": \"What color is the grass and sky?\"},\n            ],\n        }\n    ]\n    response = model.invoke(messages)\n    response.content\n    ```\n\n    ```python\n    [\n        {\"text\": \"Based on the document, \", \"type\": \"text\"},\n        {\n            \"text\": \"the grass is green\",\n            \"type\": \"text\",\n            \"citations\": [\n                {\n                    \"type\": \"char_location\",\n                    \"cited_text\": \"The grass is green. \",\n                    \"document_index\": 0,\n                    \"document_title\": \"My Document\",\n                    \"start_char_index\": 0,\n                    \"end_char_index\": 20,\n                }\n            ],\n        },\n        {\"text\": \", and \", \"type\": \"text\"},\n        {\n            \"text\": \"the sky is blue\",\n            \"type\": \"text\",\n            \"citations\": [\n                {\n                    \"type\": \"char_location\",\n                    \"cited_text\": \"The sky is blue.\",\n                    \"document_index\": 0,\n                    \"document_title\": \"My Document\",\n                    \"start_char_index\": 20,\n                    \"end_char_index\": 36,\n                }\n            ],\n        },\n        {\"text\": \".\", \"type\": \"text\"},\n    ]\n    ```\n\nToken usage:\n    ```python\n    ai_msg = model.invoke(messages)\n    ai_msg.usage_metadata\n    ```\n\n    ```python\n    {\"input_tokens\": 25, \"output_tokens\": 11, \"total_tokens\": 36}\n    ```\n\n    Message chunks containing token usage will be included during streaming by\n    default:\n\n    ```python\n    stream = model.stream(messages)\n    full = next(stream)\n    for chunk in stream:\n        full += chunk\n    full.usage_metadata\n    ```\n\n    ```python\n    {\"input_tokens\": 25, \"output_tokens\": 11, \"total_tokens\": 36}\n    ```\n\n    These can be disabled by setting `stream_usage=False` in the stream method,\n    or by setting `stream_usage=False` when initializing ChatAnthropic.\n\nPrompt caching:\n    Prompt caching reduces processing time and costs for repetitive tasks or prompts\n    with consistent elements\n\n    !!! note\n        Only certain models support prompt caching.\n        See the [Claude documentation](https://docs.claude.com/en/docs/build-with-claude/prompt-caching#supported-models)\n        for a full list.\n\n    ```python\n    from langchain_anthropic import ChatAnthropic\n\n    model = ChatAnthropic(model=\"claude-sonnet-4-5-20250929\")\n\n    messages = [\n        {\n            \"role\": \"system\",\n            \"content\": [\n                {\n                    \"type\": \"text\",\n                    \"text\": \"Below is some long context:\",\n                },\n                {\n                    \"type\": \"text\",\n                    \"text\": f\"{long_text}\",\n                    \"cache_control\": {\"type\": \"ephemeral\"},\n                },\n            ],\n        },\n        {\n            \"role\": \"user\",\n            \"content\": \"What's that about?\",\n        },\n    ]\n\n    response = model.invoke(messages)\n    response.usage_metadata[\"input_token_details\"]\n    ```\n\n    ```python\n    {\"cache_read\": 0, \"cache_creation\": 1458}\n    ```\n\n    Alternatively, you may enable prompt caching at invocation time. You may want to\n    conditionally cache based on runtime conditions, such as the length of the\n    context. Alternatively, this is useful for app-level decisions about what to\n    cache.\n\n    ```python\n    response = model.invoke(\n        messages,\n        cache_control={\"type\": \"ephemeral\"},\n    )\n    ```\n\n    ??? note \"Extended caching\"\n\n        The cache lifetime is 5 minutes by default. If this is too short, you can\n        apply one hour caching by setting `ttl` to `'1h'`.\n\n        ```python\n        model = ChatAnthropic(\n            model=\"claude-sonnet-4-5-20250929\",\n        )\n\n        messages = [\n            {\n                \"role\": \"user\",\n                \"content\": [\n                    {\n                        \"type\": \"text\",\n                        \"text\": f\"{long_text}\",\n                        \"cache_control\": {\"type\": \"ephemeral\", \"ttl\": \"1h\"},\n                    },\n                ],\n            }\n        ]\n\n        response = model.invoke(messages)\n        ```\n\n        Details of cached token counts will be included on the `InputTokenDetails`\n        of response's `usage_metadata`:\n\n        ```python\n        response = model.invoke(messages)\n        response.usage_metadata\n        ```\n\n        ```python\n        {\n            \"input_tokens\": 1500,\n            \"output_tokens\": 200,\n            \"total_tokens\": 1700,\n            \"input_token_details\": {\n                \"cache_read\": 0,\n                \"cache_creation\": 1000,\n                \"ephemeral_1h_input_tokens\": 750,\n                \"ephemeral_5m_input_tokens\": 250,\n            },\n        }\n        ```\n\n        See [Claude documentation](https://docs.claude.com/en/docs/build-with-claude/prompt-caching#1-hour-cache-duration-beta)\n        for detail.\n\n!!! note title=\"Extended context windows (beta)\"\n\n    Claude Sonnet 4 supports a 1-million token context window, available in beta for\n    organizations in usage tier 4 and organizations with custom rate limits.\n\n    ```python\n    from langchain_anthropic import ChatAnthropic\n\n    model = ChatAnthropic(\n        model=\"claude-sonnet-4-5-20250929\",\n        betas=[\"context-1m-2025-08-07\"],  # Enable 1M context beta\n    )\n\n    long_document = \"\"\"\n    This is a very long document that would benefit from the extended 1M\n    context window...\n    [imagine this continues for hundreds of thousands of tokens]\n    \"\"\"\n\n    messages = [\n        HumanMessage(f\"\"\"\n    Please analyze this document and provide a summary:\n\n    {long_document}\n\n    What are the key themes and main conclusions?\n    \"\"\")\n    ]\n\n    response = model.invoke(messages)\n    ```\n\n    See [Claude documentation](https://docs.claude.com/en/docs/build-with-claude/context-windows#1m-token-context-window)\n    for detail.\n\n\n!!! note title=\"Token-efficient tool use (beta)\"\n\n    See LangChain [docs](https://docs.langchain.com/oss/python/integrations/chat/anthropic)\n    for more detail.\n\n    ```python\n    from langchain_anthropic import ChatAnthropic\n    from langchain_core.tools import tool\n\n    model = ChatAnthropic(\n        model=\"claude-sonnet-4-5-20250929\",\n        temperature=0,\n        model_kwargs={\n            \"extra_headers\": {\n                \"anthropic-beta\": \"token-efficient-tools-2025-02-19\"\n            }\n        }\n    )\n\n    @tool\n    def get_weather(location: str) -> str:\n        \"\"\"Get the weather at a location.\"\"\"\n        return \"It's sunny.\"\n\n    model_with_tools = model.bind_tools([get_weather])\n    response = model_with_tools.invoke(\n        \"What's the weather in San Francisco?\"\n    )\n    print(response.tool_calls)\n    print(f'Total tokens: {response.usage_metadata[\"total_tokens\"]}')\n    ```\n\n    ```txt\n    [{'name': 'get_weather', 'args': {'location': 'San Francisco'}, 'id': 'toolu_01HLjQMSb1nWmgevQUtEyz17', 'type': 'tool_call'}]\n    Total tokens: 408\n    ```\n\n!!! note title=\"Context management\"\n\n    Anthropic supports a context editing feature that will automatically manage the\n    model's context window (e.g., by clearing tool results).\n\n    See [Anthropic documentation](https://docs.claude.com/en/docs/build-with-claude/context-editing)\n    for details and configuration options.\n\n    ```python\n    from langchain_anthropic import ChatAnthropic\n\n    model = ChatAnthropic(\n        model=\"claude-sonnet-4-5-20250929\",\n        betas=[\"context-management-2025-06-27\"],\n        context_management={\"edits\": [{\"type\": \"clear_tool_uses_20250919\"}]},\n    )\n    model_with_tools = model.bind_tools([{\"type\": \"web_search_20250305\", \"name\": \"web_search\"}])\n    response = model_with_tools.invoke(\"Search for recent developments in AI\")\n    ```\n\n!!! note title=\"Built-in tools\"\n\n    See LangChain [docs](https://docs.langchain.com/oss/python/integrations/chat/anthropic#built-in-tools)\n    for more detail.\n\n    ??? note \"Web search\"\n\n        ```python\n        from langchain_anthropic import ChatAnthropic\n\n        model = ChatAnthropic(model=\"claude-3-5-haiku-20241022\")\n\n        tool = {\n            \"type\": \"web_search_20250305\",\n            \"name\": \"web_search\",\n            \"max_uses\": 3,\n        }\n        model_with_tools = model.bind_tools([tool])\n\n        response = model_with_tools.invoke(\"How do I update a web app to TypeScript 5.5?\")\n        ```\n\n    ??? note \"Web fetch (beta)\"\n\n        ```python\n        from langchain_anthropic import ChatAnthropic\n\n        model = ChatAnthropic(\n            model=\"claude-3-5-haiku-20241022\",\n            betas=[\"web-fetch-2025-09-10\"],  # Enable web fetch beta\n        )\n\n        tool = {\n            \"type\": \"web_fetch_20250910\",\n            \"name\": \"web_fetch\",\n            \"max_uses\": 3,\n        }\n        model_with_tools = model.bind_tools([tool])\n\n        response = model_with_tools.invoke(\"Please analyze the content at https://example.com/article\")\n        ```\n\n    ??? note \"Code execution\"\n\n        ```python\n        model = ChatAnthropic(\n            model=\"claude-sonnet-4-5-20250929\",\n            betas=[\"code-execution-2025-05-22\"],\n        )\n\n        tool = {\"type\": \"code_execution_20250522\", \"name\": \"code_execution\"}\n        model_with_tools = model.bind_tools([tool])\n\n        response = model_with_tools.invoke(\n            \"Calculate the mean and standard deviation of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\"\n        )\n        ```\n\n    ??? note \"Remote MCP\"\n\n        ```python\n        from langchain_anthropic import ChatAnthropic\n\n        mcp_servers = [\n            {\n                \"type\": \"url\",\n                \"url\": \"https://mcp.deepwiki.com/mcp\",\n                \"name\": \"deepwiki\",\n                \"tool_configuration\": {  # optional configuration\n                    \"enabled\": True,\n                    \"allowed_tools\": [\"ask_question\"],\n                },\n                \"authorization_token\": \"PLACEHOLDER\",  # optional authorization\n            }\n        ]\n\n        model = ChatAnthropic(\n            model=\"claude-sonnet-4-5-20250929\",\n            betas=[\"mcp-client-2025-04-04\"],\n            mcp_servers=mcp_servers,\n        )\n\n        response = model.invoke(\n            \"What transport protocols does the 2025-03-26 version of the MCP \"\n            \"spec (modelcontextprotocol/modelcontextprotocol) support?\"\n        )\n        ```\n\n    ??? note \"Text editor\"\n\n        ```python\n        from langchain_anthropic import ChatAnthropic\n\n        model = ChatAnthropic(model=\"claude-sonnet-4-5-20250929\")\n\n        tool = {\"type\": \"text_editor_20250124\", \"name\": \"str_replace_editor\"}\n        model_with_tools = model.bind_tools([tool])\n\n        response = model_with_tools.invoke(\n            \"There's a syntax error in my primes.py file. Can you help me fix it?\"\n        )\n        print(response.text)\n        response.tool_calls\n        ```\n\n        ```txt\n        I'd be happy to help you fix the syntax error in your primes.py file. First, let's look at the current content of the file to identify the error.\n\n        [{'name': 'str_replace_editor',\n        'args': {'command': 'view', 'path': '/repo/primes.py'},\n        'id': 'toolu_01VdNgt1YV7kGfj9LFLm6HyQ',\n        'type': 'tool_call'}]\n        ```\n\n    ??? note \"Memory tool\"\n\n        ```python\n        from langchain_anthropic import ChatAnthropic\n\n        model = ChatAnthropic(\n            model=\"claude-sonnet-4-5-20250929\",\n            betas=[\"context-management-2025-06-27\"],\n        )\n        model_with_tools = model.bind_tools([{\"type\": \"memory_20250818\", \"name\": \"memory\"}])\n        response = model_with_tools.invoke(\"What are my interests?\")\n        ```\n\n!!! note title=\"Response metadata\"\n\n    ```python\n    ai_msg = model.invoke(messages)\n    ai_msg.response_metadata\n    ```\n\n    ```python\n    {\n        \"id\": \"msg_013xU6FHEGEq76aP4RgFerVT\",\n        \"model\": \"claude-sonnet-4-5-20250929\",\n        \"stop_reason\": \"end_turn\",\n        \"stop_sequence\": None,\n        \"usage\": {\"input_tokens\": 25, \"output_tokens\": 11},\n    }\n    ```",
+      "bases": [
+        "BaseChatModel"
+      ],
+      "methods": {
+        "build_extra": {
+          "name": "build_extra",
+          "module": "langchain_anthropic",
+          "doc": "Build model kwargs.",
+          "parameters": {
+            "values": {
+              "name": "values",
+              "kind": "POSITIONAL_OR_KEYWORD",
+              "default": null,
+              "annotation": "dict",
+              "type_hint": "<class 'dict'>"
+            }
+          },
+          "return_type": "typing.Any"
+        },
+        "construct": {
+          "name": "construct",
+          "module": "langchain_anthropic",
+          "doc": "",
+          "parameters": {
+            "_fields_set": {
+              "name": "_fields_set",
+              "kind": "POSITIONAL_OR_KEYWORD",
+              "default": "None",
+              "annotation": "set[str] | None",
+              "type_hint": "set[str] | None"
+            },
+            "values": {
+              "name": "values",
+              "kind": "VAR_KEYWORD",
+              "default": null,
+              "annotation": "Any",
+              "type_hint": "typing.Any"
+            }
+          },
+          "return_type": "typing.Self"
+        },
+        "from_orm": {
+          "name": "from_orm",
+          "module": "langchain_anthropic",
+          "doc": "",
+          "parameters": {
+            "obj": {
+              "name": "obj",
+              "kind": "POSITIONAL_OR_KEYWORD",
+              "default": null,
+              "annotation": "Any",
+              "type_hint": "typing.Any"
+            }
+          },
+          "return_type": "typing.Self"
+        },
+        "get_lc_namespace": {
+          "name": "get_lc_namespace",
+          "module": "langchain_anthropic",
+          "doc": "Get the namespace of the LangChain object.\n\nReturns:\n    `[\"langchain\", \"chat_models\", \"anthropic\"]`",
+          "parameters": {},
+          "return_type": "list[str]"
+        },
+        "is_lc_serializable": {
+          "name": "is_lc_serializable",
+          "module": "langchain_anthropic",
+          "doc": "Whether the class is serializable in langchain.",
+          "parameters": {},
+          "return_type": "<class 'bool'>"
+        },
+        "lc_id": {
+          "name": "lc_id",
+          "module": "langchain_anthropic",
+          "doc": "Return a unique identifier for this class for serialization purposes.\n\nThe unique identifier is a list of strings that describes the path\nto the object.\n\nFor example, for the class `langchain.llms.openai.OpenAI`, the id is\n`[\"langchain\", \"llms\", \"openai\", \"OpenAI\"]`.",
+          "parameters": {},
+          "return_type": "list[str]"
+        },
+        "model_construct": {
+          "name": "model_construct",
+          "module": "langchain_anthropic",
+          "doc": "Creates a new instance of the `Model` class with validated data.\n\nCreates a new model setting `__dict__` and `__pydantic_fields_set__` from trusted or pre-validated data.\nDefault values are respected, but no other validation is performed.\n\n!!! note\n    `model_construct()` generally respects the `model_config.extra` setting on the provided model.\n    That is, if `model_config.extra == 'allow'`, then all extra passed values are added to the model instance's `__dict__`\n    and `__pydantic_extra__` fields. If `model_config.extra == 'ignore'` (the default), then all extra passed values are ignored.\n    Because no validation is performed with a call to `model_construct()`, having `model_config.extra == 'forbid'` does not result in\n    an error if extra values are passed, but they will be ignored.\n\nArgs:\n    _fields_set: A set of field names that were originally explicitly set during instantiation. If provided,\n        this is directly used for the [`model_fields_set`][pydantic.BaseModel.model_fields_set] attribute.\n        Otherwise, the field names from the `values` argument will be used.\n    values: Trusted or pre-validated data dictionary.\n\nReturns:\n    A new instance of the `Model` class with validated data.",
+          "parameters": {
+            "_fields_set": {
+              "name": "_fields_set",
+              "kind": "POSITIONAL_OR_KEYWORD",
+              "default": "None",
+              "annotation": "set[str] | None",
+              "type_hint": "set[str] | None"
+            },
+            "values": {
+              "name": "values",
+              "kind": "VAR_KEYWORD",
+              "default": null,
+              "annotation": "Any",
+              "type_hint": "typing.Any"
+            }
+          },
+          "return_type": "typing.Self"
+        },
+        "model_json_schema": {
+          "name": "model_json_schema",
+          "module": "langchain_anthropic",
+          "doc": "Generates a JSON schema for a model class.\n\nArgs:\n    by_alias: Whether to use attribute aliases or not.\n    ref_template: The reference template.\n    union_format: The format to use when combining schemas from unions together. Can be one of:\n\n        - `'any_of'`: Use the [`anyOf`](https://json-schema.org/understanding-json-schema/reference/combining#anyOf)\n        keyword to combine schemas (the default).\n        - `'primitive_type_array'`: Use the [`type`](https://json-schema.org/understanding-json-schema/reference/type)\n        keyword as an array of strings, containing each type of the combination. If any of the schemas is not a primitive\n        type (`string`, `boolean`, `null`, `integer` or `number`) or contains constraints/metadata, falls back to\n        `any_of`.\n    schema_generator: To override the logic used to generate the JSON schema, as a subclass of\n        `GenerateJsonSchema` with your desired modifications\n    mode: The mode in which to generate the schema.\n\nReturns:\n    The JSON schema for the given model class.",
+          "parameters": {
+            "by_alias": {
+              "name": "by_alias",
+              "kind": "POSITIONAL_OR_KEYWORD",
+              "default": "True",
+              "annotation": "bool",
+              "type_hint": "<class 'bool'>"
+            },
+            "ref_template": {
+              "name": "ref_template",
+              "kind": "POSITIONAL_OR_KEYWORD",
+              "default": "#/$defs/{model}",
+              "annotation": "str",
+              "type_hint": "<class 'str'>"
+            },
+            "schema_generator": {
+              "name": "schema_generator",
+              "kind": "POSITIONAL_OR_KEYWORD",
+              "default": "<class 'pydantic.json_schema.GenerateJsonSchema'>",
+              "annotation": "type[GenerateJsonSchema]",
+              "type_hint": "type[pydantic.json_schema.GenerateJsonSchema]"
+            },
+            "mode": {
+              "name": "mode",
+              "kind": "POSITIONAL_OR_KEYWORD",
+              "default": "validation",
+              "annotation": "JsonSchemaMode",
+              "type_hint": "typing.Literal['validation', 'serialization']"
+            },
+            "union_format": {
+              "name": "union_format",
+              "kind": "KEYWORD_ONLY",
+              "default": "any_of",
+              "annotation": "Literal['any_of', 'primitive_type_array']",
+              "type_hint": "typing.Literal['any_of', 'primitive_type_array']"
+            }
+          },
+          "return_type": "dict[str, typing.Any]"
+        },
+        "model_parametrized_name": {
+          "name": "model_parametrized_name",
+          "module": "langchain_anthropic",
+          "doc": "Compute the class name for parametrizations of generic classes.\n\nThis method can be overridden to achieve a custom naming scheme for generic BaseModels.\n\nArgs:\n    params: Tuple of types of the class. Given a generic class\n        `Model` with 2 type variables and a concrete model `Model[str, int]`,\n        the value `(str, int)` would be passed to `params`.\n\nReturns:\n    String representing the new class where `params` are passed to `cls` as type variables.\n\nRaises:\n    TypeError: Raised when trying to generate concrete names for non-generic models.",
+          "parameters": {
+            "params": {
+              "name": "params",
+              "kind": "POSITIONAL_OR_KEYWORD",
+              "default": null,
+              "annotation": "tuple[type[Any], ...]",
+              "type_hint": "tuple[type[typing.Any], ...]"
+            }
+          },
+          "return_type": "<class 'str'>"
+        },
+        "model_rebuild": {
+          "name": "model_rebuild",
+          "module": "langchain_anthropic",
+          "error": "name 'MappingNamespace' is not defined"
+        },
+        "model_validate": {
+          "name": "model_validate",
+          "module": "langchain_anthropic",
+          "doc": "Validate a pydantic model instance.\n\nArgs:\n    obj: The object to validate.\n    strict: Whether to enforce types strictly.\n    extra: Whether to ignore, allow, or forbid extra data during model validation.\n        See the [`extra` configuration value][pydantic.ConfigDict.extra] for details.\n    from_attributes: Whether to extract data from object attributes.\n    context: Additional context to pass to the validator.\n    by_alias: Whether to use the field's alias when validating against the provided input data.\n    by_name: Whether to use the field's name when validating against the provided input data.\n\nRaises:\n    ValidationError: If the object could not be validated.\n\nReturns:\n    The validated model instance.",
+          "parameters": {
+            "obj": {
+              "name": "obj",
+              "kind": "POSITIONAL_OR_KEYWORD",
+              "default": null,
+              "annotation": "Any",
+              "type_hint": "typing.Any"
+            },
+            "strict": {
+              "name": "strict",
+              "kind": "KEYWORD_ONLY",
+              "default": "None",
+              "annotation": "bool | None",
+              "type_hint": "bool | None"
+            },
+            "extra": {
+              "name": "extra",
+              "kind": "KEYWORD_ONLY",
+              "default": "None",
+              "annotation": "ExtraValues | None",
+              "type_hint": "typing.Optional[typing.Literal['allow', 'ignore', 'forbid']]"
+            },
+            "from_attributes": {
+              "name": "from_attributes",
+              "kind": "KEYWORD_ONLY",
+              "default": "None",
+              "annotation": "bool | None",
+              "type_hint": "bool | None"
+            },
+            "context": {
+              "name": "context",
+              "kind": "KEYWORD_ONLY",
+              "default": "None",
+              "annotation": "Any | None",
+              "type_hint": "typing.Any | None"
+            },
+            "by_alias": {
+              "name": "by_alias",
+              "kind": "KEYWORD_ONLY",
+              "default": "None",
+              "annotation": "bool | None",
+              "type_hint": "bool | None"
+            },
+            "by_name": {
+              "name": "by_name",
+              "kind": "KEYWORD_ONLY",
+              "default": "None",
+              "annotation": "bool | None",
+              "type_hint": "bool | None"
+            }
+          },
+          "return_type": "typing.Self"
+        },
+        "model_validate_json": {
+          "name": "model_validate_json",
+          "module": "langchain_anthropic",
+          "doc": "!!! abstract \"Usage Documentation\"\n    [JSON Parsing](../concepts/json.md#json-parsing)\n\nValidate the given JSON data against the Pydantic model.\n\nArgs:\n    json_data: The JSON data to validate.\n    strict: Whether to enforce types strictly.\n    extra: Whether to ignore, allow, or forbid extra data during model validation.\n        See the [`extra` configuration value][pydantic.ConfigDict.extra] for details.\n    context: Extra variables to pass to the validator.\n    by_alias: Whether to use the field's alias when validating against the provided input data.\n    by_name: Whether to use the field's name when validating against the provided input data.\n\nReturns:\n    The validated Pydantic model.\n\nRaises:\n    ValidationError: If `json_data` is not a JSON string or the object could not be validated.",
+          "parameters": {
+            "json_data": {
+              "name": "json_data",
+              "kind": "POSITIONAL_OR_KEYWORD",
+              "default": null,
+              "annotation": "str | bytes | bytearray",
+              "type_hint": "str | bytes | bytearray"
+            },
+            "strict": {
+              "name": "strict",
+              "kind": "KEYWORD_ONLY",
+              "default": "None",
+              "annotation": "bool | None",
+              "type_hint": "bool | None"
+            },
+            "extra": {
+              "name": "extra",
+              "kind": "KEYWORD_ONLY",
+              "default": "None",
+              "annotation": "ExtraValues | None",
+              "type_hint": "typing.Optional[typing.Literal['allow', 'ignore', 'forbid']]"
+            },
+            "context": {
+              "name": "context",
+              "kind": "KEYWORD_ONLY",
+              "default": "None",
+              "annotation": "Any | None",
+              "type_hint": "typing.Any | None"
+            },
+            "by_alias": {
+              "name": "by_alias",
+              "kind": "KEYWORD_ONLY",
+              "default": "None",
+              "annotation": "bool | None",
+              "type_hint": "bool | None"
+            },
+            "by_name": {
+              "name": "by_name",
+              "kind": "KEYWORD_ONLY",
+              "default": "None",
+              "annotation": "bool | None",
+              "type_hint": "bool | None"
+            }
+          },
+          "return_type": "typing.Self"
+        },
+        "model_validate_strings": {
+          "name": "model_validate_strings",
+          "module": "langchain_anthropic",
+          "doc": "Validate the given object with string data against the Pydantic model.\n\nArgs:\n    obj: The object containing string data to validate.\n    strict: Whether to enforce types strictly.\n    extra: Whether to ignore, allow, or forbid extra data during model validation.\n        See the [`extra` configuration value][pydantic.ConfigDict.extra] for details.\n    context: Extra variables to pass to the validator.\n    by_alias: Whether to use the field's alias when validating against the provided input data.\n    by_name: Whether to use the field's name when validating against the provided input data.\n\nReturns:\n    The validated Pydantic model.",
+          "parameters": {
+            "obj": {
+              "name": "obj",
+              "kind": "POSITIONAL_OR_KEYWORD",
+              "default": null,
+              "annotation": "Any",
+              "type_hint": "typing.Any"
+            },
+            "strict": {
+              "name": "strict",
+              "kind": "KEYWORD_ONLY",
+              "default": "None",
+              "annotation": "bool | None",
+              "type_hint": "bool | None"
+            },
+            "extra": {
+              "name": "extra",
+              "kind": "KEYWORD_ONLY",
+              "default": "None",
+              "annotation": "ExtraValues | None",
+              "type_hint": "typing.Optional[typing.Literal['allow', 'ignore', 'forbid']]"
+            },
+            "context": {
+              "name": "context",
+              "kind": "KEYWORD_ONLY",
+              "default": "None",
+              "annotation": "Any | None",
+              "type_hint": "typing.Any | None"
+            },
+            "by_alias": {
+              "name": "by_alias",
+              "kind": "KEYWORD_ONLY",
+              "default": "None",
+              "annotation": "bool | None",
+              "type_hint": "bool | None"
+            },
+            "by_name": {
+              "name": "by_name",
+              "kind": "KEYWORD_ONLY",
+              "default": "None",
+              "annotation": "bool | None",
+              "type_hint": "bool | None"
+            }
+          },
+          "return_type": "typing.Self"
+        },
+        "parse_file": {
+          "name": "parse_file",
+          "module": "langchain_anthropic",
+          "error": "name 'Path' is not defined"
+        },
+        "parse_obj": {
+          "name": "parse_obj",
+          "module": "langchain_anthropic",
+          "doc": "",
+          "parameters": {
+            "obj": {
+              "name": "obj",
+              "kind": "POSITIONAL_OR_KEYWORD",
+              "default": null,
+              "annotation": "Any",
+              "type_hint": "typing.Any"
+            }
+          },
+          "return_type": "typing.Self"
+        },
+        "parse_raw": {
+          "name": "parse_raw",
+          "module": "langchain_anthropic",
+          "error": "name 'DeprecatedParseProtocol' is not defined"
+        },
+        "schema": {
+          "name": "schema",
+          "module": "langchain_anthropic",
+          "doc": "",
+          "parameters": {
+            "by_alias": {
+              "name": "by_alias",
+              "kind": "POSITIONAL_OR_KEYWORD",
+              "default": "True",
+              "annotation": "bool",
+              "type_hint": "<class 'bool'>"
+            },
+            "ref_template": {
+              "name": "ref_template",
+              "kind": "POSITIONAL_OR_KEYWORD",
+              "default": "#/$defs/{model}",
+              "annotation": "str",
+              "type_hint": "<class 'str'>"
+            }
+          },
+          "return_type": "typing.Dict[str, typing.Any]"
+        },
+        "schema_json": {
+          "name": "schema_json",
+          "module": "langchain_anthropic",
+          "doc": "",
+          "parameters": {
+            "by_alias": {
+              "name": "by_alias",
+              "kind": "KEYWORD_ONLY",
+              "default": "True",
+              "annotation": "bool",
+              "type_hint": "<class 'bool'>"
+            },
+            "ref_template": {
+              "name": "ref_template",
+              "kind": "KEYWORD_ONLY",
+              "default": "#/$defs/{model}",
+              "annotation": "str",
+              "type_hint": "<class 'str'>"
+            },
+            "dumps_kwargs": {
+              "name": "dumps_kwargs",
+              "kind": "VAR_KEYWORD",
+              "default": null,
+              "annotation": "Any",
+              "type_hint": "typing.Any"
+            }
+          },
+          "return_type": "<class 'str'>"
+        },
+        "set_default_max_tokens": {
+          "name": "set_default_max_tokens",
+          "module": "langchain_anthropic",
+          "doc": "Set default max_tokens.",
+          "parameters": {
+            "values": {
+              "name": "values",
+              "kind": "POSITIONAL_OR_KEYWORD",
+              "default": null,
+              "annotation": "dict[str, Any]",
+              "type_hint": "dict[str, typing.Any]"
+            }
+          },
+          "return_type": "typing.Any"
+        },
+        "set_verbose": {
+          "name": "set_verbose",
+          "module": "langchain_anthropic",
+          "doc": "If verbose is `None`, set it.\n\nThis allows users to pass in `None` as verbose to access the global setting.\n\nArgs:\n    verbose: The verbosity setting to use.\n\nReturns:\n    The verbosity setting to use.",
+          "parameters": {
+            "verbose": {
+              "name": "verbose",
+              "kind": "POSITIONAL_OR_KEYWORD",
+              "default": null,
+              "annotation": "bool | None",
+              "type_hint": "bool | None"
+            }
+          },
+          "return_type": "<class 'bool'>"
+        },
+        "update_forward_refs": {
+          "name": "update_forward_refs",
+          "module": "langchain_anthropic",
+          "doc": "",
+          "parameters": {
+            "localns": {
+              "name": "localns",
+              "kind": "VAR_KEYWORD",
+              "default": null,
+              "annotation": "Any",
+              "type_hint": "typing.Any"
+            }
+          },
+          "return_type": "<class 'NoneType'>"
+        },
+        "validate": {
+          "name": "validate",
+          "module": "langchain_anthropic",
+          "doc": "",
+          "parameters": {
+            "value": {
+              "name": "value",
+              "kind": "POSITIONAL_OR_KEYWORD",
+              "default": null,
+              "annotation": "Any",
+              "type_hint": "typing.Any"
+            }
+          },
+          "return_type": "typing.Self"
+        }
+      },
+      "attributes": {
+        "name": "str | None",
+        "cache": "langchain_core.caches.BaseCache | bool | None",
+        "verbose": "<class 'bool'>",
+        "callbacks": "list[langchain_core.callbacks.base.BaseCallbackHandler] | langchain_core.callbacks.base.BaseCallbackManager | None",
+        "tags": "list[str] | None",
+        "metadata": "dict[str, typing.Any] | None",
+        "custom_get_token_ids": "collections.abc.Callable[[str], list[int]] | None",
+        "rate_limiter": "langchain_core.rate_limiters.BaseRateLimiter | None",
+        "disable_streaming": "typing.Union[bool, typing.Literal['tool_calling']]",
+        "output_version": "str | None",
+        "model": "<class 'str'>",
+        "max_tokens": "int | None",
+        "temperature": "float | None",
+        "top_k": "int | None",
+        "top_p": "float | None",
+        "default_request_timeout": "float | None",
+        "max_retries": "<class 'int'>",
+        "stop_sequences": "list[str] | None",
+        "anthropic_api_url": "str | None",
+        "anthropic_api_key": "<class 'pydantic.types.SecretStr'>",
+        "anthropic_proxy": "str | None",
+        "default_headers": "collections.abc.Mapping[str, str] | None",
+        "betas": "list[str] | None",
+        "model_kwargs": "dict[str, typing.Any]",
+        "streaming": "<class 'bool'>",
+        "stream_usage": "<class 'bool'>",
+        "thinking": "dict[str, typing.Any] | None",
+        "mcp_servers": "list[dict[str, typing.Any]] | None",
+        "context_management": "dict[str, typing.Any] | None"
+      }
+    }
+  },
+  "imports": []
+}

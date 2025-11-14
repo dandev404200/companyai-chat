@@ -1,14 +1,18 @@
-import json
+from cmath import e
+import os
+from tempfile import tempdir
 from typing import Any, TypedDict
 
 from dotenv import load_dotenv
 from langchain.agents import create_agent
 from langchain_core.messages import (
-    AIMessage,
     BaseMessage,
     HumanMessage,
 )
+from langchain_core.messages.ai import AIMessage
 from langchain_core.runnables import RunnableConfig
+
+from agents.antOauth import ChatAnthropicOauth
 
 load_dotenv()
 
@@ -24,10 +28,18 @@ def get_weather(city: str) -> str:
     return f"It's always sunny in {city}!"
 
 
+# Initialize ChatAnthropicOauth
+llm = ChatAnthropicOauth(
+    auth_token=os.getenv("ANTHROPIC_AUTH_TOKEN"),
+    model="claude-sonnet-4-5-20250929",
+    top_k=1
+)
+
+# Create agent - system_prompt will be added as second block after Claude Code
 agent = create_agent(
-    model="claude-haiku-4-5-20251001",
-    tools=[get_weather],
-    system_prompt="You are a helpful assistant",
+    model=llm,
+    system_prompt="I'm joking you're not a CLI, you're a helpful assistant",
+
 )
 
 
@@ -47,10 +59,13 @@ def run_agent_with_messages(
     return agent.invoke({"messages": messages}, config=config)
 
 
-result = run_agent_with_messages(
-    messages=[
-        HumanMessage(content="What is the weather in San Francisco?"),
-        AIMessage(content="It's always sunny in San Francisco!"),
-    ]
-)
-print(json.dumps(result, indent=2))
+if __name__ == "__main__":
+    result = run_agent_with_messages(
+        messages=[
+            HumanMessage(content="write me any python function"),
+        ],
+    )
+
+    for message in result['messages']:
+        if isinstance(message, AIMessage):
+            print(message.content)

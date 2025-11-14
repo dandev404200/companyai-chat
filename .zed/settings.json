@@ -1,7 +1,9 @@
 {
   "languages": {
     "Python": {
-      "language_servers": ["basedpyright"],
+      "language_servers": [
+        "basedpyright"
+      ],
       "format_on_save": "on",
       "formatter": "language_server"
     }
@@ -10,8 +12,8 @@
     "basedpyright": {
       "settings": {
         "python": {
-          "pythonPath": "./backend/.venv/bin/python",
-          "venvPath": "./backend",
+          "pythonPath": ".venv/bin/python",
+          "venvPath": ".",
           "venv": ".venv"
         },
         "basedpyright": {
@@ -47,9 +49,19 @@
               "reportPrivateUsage": "none",
               "reportConstantRedefinition": "warning"
             },
-            "extraPaths": ["./backend", "./backend/app"],
-            "ignore": ["**/node_modules", "**/__pycache__", ".git", "**/.*"],
-            "includeFileSpecs": ["backend/**/*.py"],
+            "extraPaths": [
+              "./backend",
+              "./backend/app"
+            ],
+            "ignore": [
+              "**/node_modules",
+              "**/__pycache__",
+              ".git",
+              "**/.*"
+            ],
+            "includeFileSpecs": [
+              "backend/**/*.py"
+            ],
             "excludeFileSpecs": [
               "**/__pycache__",
               "**/.venv",
